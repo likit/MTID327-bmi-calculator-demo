@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <h2>Leave a message</h2>
+  <form action="/message" method="post">
+    <input class="input" placeholder="Your Name" type="text" name="name"/>
+    <textarea name="message" class="textarea is-danger" required></textarea>
+    <input class="button is-success" type="submit" value="Submit">
+  </form>
+<a href="/">Home</a>
+</div>
+{% endblock %}

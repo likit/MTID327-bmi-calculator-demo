@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <h1 class="title">BMI Result</h1>
+  <p>Name: {{name}}</p>
+  <p>Weight: {{weight}} kg</p>
+  <p>Height: {{height}} m</p>
+  <p>BMI: {{bmi}}</p>
+  <p>Category: {{category}}</p>
+  <a class="button is-primary" href="/bmi">Calculate Again</a>
+  <a class="button is-light" href="/">Home</a>
+</div>
+{% endblock %}
