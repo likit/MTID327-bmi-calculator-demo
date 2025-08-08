@@ -1,23 +1,17 @@
 from flask import Flask, request, render_template
 from forms import ContactForm, BMIForm
 from flask_sqlalchemy import SQLAlchemy
-import click
 
 
 db = SQLAlchemy()
 
-def create_app():
-    app = Flask(__name__) # app instance
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bmi.db'
-    db.init_app(app)
-
-app = create_app()
+app = Flask(__name__) # app instance
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bmi.db'
+db.init_app(app)
 
 from models import *
 
-
-@app.cli.command('initdb')
-def initdb_command():
+with app.app_context():
     db.create_all()
 
 
