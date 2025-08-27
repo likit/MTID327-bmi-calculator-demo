@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="section">
+    <div class="container">
+        <form method="post">
+            {{ form.hidden_tag() }}
+            <div class="field">
+                <label class="label">{{ form.name.label }}</label>
+                <div class="control">
+                    {{ form.name(class="input is-danger") }}
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">{{ form.username.label }}</label>
+                <div class="control">
+                    {{ form.username(class="input is-danger") }}
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">{{ form.password.label }}</label>
+                <div class="control">
+                    {{ form.password(class="input is-danger") }}
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">{{ form.confirm_password.label }}</label>
+                <div class="control">
+                    {{ form.confirm_password(class="input is-danger") }}
+                </div>
+            </div>
+            <div class="field">
+                <input type="submit" value="Submit" class="button is-success">
+            </div>
+        </form>
+    </div>
+    </section>
+{% endblock %}

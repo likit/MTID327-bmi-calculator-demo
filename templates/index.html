@@ -1,12 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-  <h1 class="title">Hello BMI Calculator!</h1>
-  <a class="button is-link" href="/about">About</a>
-  <a class="button is-light" href="/contact">Contact Us</a>
-  <a class="button is-success" href="/message">Leave a message</a>
-  <a class="button is-info" href="/bmi">Calculate BMI</a>
-  <a class="button is-primary" href="/">Home</a>
-</div>
+    <div class="container">
+        <h1 class="title">Hello BMI Calculator!</h1>
+        <a class="button is-link" href="/about">About</a>
+        <a class="button is-light" href="/contact">Contact Us</a>
+        <a class="button is-success" href="/message">Leave a message</a>
+        <a class="button is-link" href="/register-user">Register</a>
+        <a class="button is-info" href="/bmi">Calculate BMI</a>
+        <a class="button is-primary" href="/">Home</a>
+        {% if not current_user.is_authenticated %}
+        <form method="post" action="/login">
+            {{ form.hidden_tag() }}
+            <div class="field">
+                <label class="label">{{ form.username.label }}</label>
+                <div class="control">
+                    {{ form.username(class="input is-danger") }}
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">{{ form.password.label }}</label>
+                <div class="control">
+                    {{ form.password(class="input is-danger") }}
+                </div>
+            </div>
+            <div class="field">
+                <input type="submit" value="Log In" class="button is-success">
+            </div>
+        </form>
+        {% else %}
+            You have logged in as {{ current_user.name }}
+            <a href="{{ url_for('logout') }}" class="button is-text">logout</a>
+        {% endif %}
+    </div>
 {% endblock %}

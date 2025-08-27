@@ -1,26 +1,55 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form method="post">
-  <div class="field">
-    <div class="control">
-      {{form.name(class="input", placeholder="Name")}}
-    </div>
-  </div>
-  <div class="field">
-    <div class="control">
-      {{form.weight(class="input", placeholder="Weight (kg)")}}
-    </div>
-  </div>
-  <div class="field">
-    <div class="control">
-      {{form.height(class="input", placeholder="Height (cm)")}}
-    </div>
-  </div>
-  <div class="field">
-    <div class="control">
-      <input type=submit class="button is-primary" value="Calculate"/>
-    </div>
-  </div>
-</form>
+    <section class="section">
+        <form method="post">
+            {{ form.hidden_tag() }}
+            <div class="field">
+                <div class="control">
+                    {{ form.weight(class="input", placeholder="Weight (kg)") }}
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    {{ form.height(class="input", placeholder="Height (cm)") }}
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input type=submit class="button is-primary" value="Calculate"/>
+                </div>
+            </div>
+        </form>
+        <table class="table is-striped is-fullwidth">
+            <thead>
+            <th>Name</th>
+            <th>Weight (kg)</th>
+            <th>Height (cm)</th>
+            <th>BMI</th>
+            <th>Category</th>
+            <th></th>
+            </thead>
+            <tbody>
+            {% for record in records %}
+                <tr>
+                    <td>{{ record.user.name }}</td>
+                    <td>{{ record.weight }}</td>
+                    <td>{{ record.height }}</td>
+                    <td>{{ record.bmi|round(2) }}</td>
+                    <td>
+                        <a href="{{ url_for('calculate_bmi', category_query=record.category) }}">
+                            {{ record.category|upper }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('edit_bmi', record_id=record.id) }}">
+                            edit
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('calculate_bmi') }}" class="button is-info">Show All</a>
+    </section>
 {% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="section">
+        <form method="post">
+            {{ form.hidden_tag() }}
+            <div class="field">
+                <div class="control">
+                    {{ form.weight(class="input", placeholder="Weight (kg)") }}
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    {{ form.height(class="input", placeholder="Height (cm)") }}
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input type=submit class="button is-primary" value="Save"/>
+                    <a href="{{ url_for('delete_bmi', record_id=record_id) }}" class="button is-danger">Delete</a>
+                </div>
+            </div>
+        </form>
+    </section>
+{% endblock %}
